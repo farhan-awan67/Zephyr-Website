@@ -1,16 +1,6 @@
 const User = require("../models/userModel");
 const Post = require("../models/postModel");
 
-// const adminPage = async (req, res, next) => {
-//   try {
-//     const users = await User.find();
-//     res.render("admin", { users });
-//   } catch (error) {
-//     console.log(error);
-//     next(error);
-//   }
-// };
-
 const adminPage = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -38,9 +28,7 @@ const adminPage = async (req, res, next) => {
 
     // Send users data (including post counts) to the view
     res.render("admin", { posts, users });
-    console.log(users);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

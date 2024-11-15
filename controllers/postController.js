@@ -21,19 +21,6 @@ const compose = function (req, res) {
   res.render("compose");
 };
 
-// const createPost = async function (req, res, next) {
-//   try {
-//     console.log(req.body);
-//     const userId = req.user.id;
-//     const post = new Post({ ...req.body.post, userId });
-//     await post.save();
-//     res.redirect("/");
-//   } catch (err) {
-//     next(err);
-//     console.log(err);
-//   }
-// };
-
 const createPost = async function (req, res, next) {
   try {
     const url = req.file.path;
@@ -44,8 +31,6 @@ const createPost = async function (req, res, next) {
     if (!filename) {
       console.log("filename not found");
     }
-    console.log(url);
-    console.log(filename);
     const userId = req.user.id;
     const post = new Post({ ...req.body.post, userId });
     post.image = { url, filename };
@@ -53,7 +38,6 @@ const createPost = async function (req, res, next) {
     res.redirect("/");
   } catch (err) {
     next(err);
-    console.log(err);
   }
 };
 
@@ -122,16 +106,13 @@ const addLike = async (req, res, next) => {
     }
 
     const userIndex = post.likedBy.indexOf(req.user._id);
-    console.log(userIndex);
 
     if (userIndex === -1) {
       post.likedBy.push(req.user._id);
       post.likes += 1;
-      console.log(post.likedBy);
     } else {
       post.likedBy.splice(userIndex, 1);
       post.likes -= 1;
-      console.log(post.likedBy);
     }
 
     await post.save();

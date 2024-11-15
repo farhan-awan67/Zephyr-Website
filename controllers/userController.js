@@ -3,11 +3,9 @@ const User = require("../models/userModel");
 const signup = async (req, res) => {
   try {
     const { email, username, password } = req.body;
-    console.log(username);
     const existingUser = await User.findOne({ username });
     if (existingUser) {
       req.flash("error", "username already exists");
-      // res.redirect("/signup");
     }
     const userIn = new User({ email, username });
     const registerUser = await User.register(userIn, password);
@@ -20,8 +18,6 @@ const signup = async (req, res) => {
       res.redirect("/");
     });
   } catch (error) {
-    // req.flash("error", "error.message");
-    console.log(error);
     res.redirect("/signup");
   }
 };
