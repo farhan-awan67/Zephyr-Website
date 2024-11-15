@@ -1,0 +1,37 @@
+<%- include("partials/header"); -%>
+<h1 class="text-3xl font-medium mb-2">Update</h1>
+<form
+  action="/post/<%= findPost._id %>/Update?_method=PUT"
+  method="post"
+  class="needs-validation"
+  novalidate
+  enctype="multipart/form-data"
+>
+  <div class="form-group">
+    <label class="form-label text-xl">Title</label>
+    <input
+      class="form-control"
+      type="text"
+      name="post[title]"
+      value="<%= findPost.title %>"
+      required
+    />
+    <div class="invalid-feedback">Please add title.</div>
+    <label class="form-label text-xl">Image</label>
+    <input class="form-control" type="file" name="post[image]" required />
+    <div class="invalid-feedback">Please upload an image.</div>
+    <label class="form-label text-xl">Post</label>
+    <textarea
+      class="form-control"
+      name="post[content]"
+      rows="5"
+      cols="30"
+      required
+    >
+<%= findPost.content %></textarea
+    >
+    <div class="invalid-feedback">Please add content.</div>
+  </div>
+  <button class="btn btn-primary mt-2 shadow-md" type="submit">Update</button>
+</form>
+<%- include("partials/footer"); -%>

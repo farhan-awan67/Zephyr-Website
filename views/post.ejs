@@ -1,0 +1,15 @@
+<%- include("partials/header"); -%>
+<div class="p-3 m-auto w-full">
+  <a
+    class="bg-green-500 text-white px-2 py-2 rounded-md inline-block shadow-md mb-2 text-left"
+    href="/"
+    >Batck to Home</a
+  >
+  <div class="max-w-[500px] mx-auto">
+    <img class="rounded mt-2 w-full" src="<%= image %>" alt="post image" />
+    <h1 class="text-4xl font-semibold my-3"><%=title%></h1>
+    <p class="text-[18px] text-justify"><%=content%></p>
+  </div>
+</div>
+
+<%- include("partials/footer"); -%>

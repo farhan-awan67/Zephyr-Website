@@ -1,0 +1,45 @@
+<%- include("partials/header"); -%>
+<div class="px-6 mt-2 md:mt-3 md:px-7">
+  <h1 class="text-4xl font-semibold mb-2">Home</h1>
+  <p><%= startingContent %></p>
+</div>
+<div class="px-6  w-full flex gap-x-1 flex-wrap justify-evenly items-center mt-2 md:mt-3 md:px-7">
+  <% if (posts.length === 0) { %>
+  <h3 class="mt-3">No posts available!</h3>
+  <% } else { %> 
+    <% posts.forEach(function(post) { %>
+     <% if (post.title) { %>
+      <div class="card w-[100%] sm:w-[60%] md:w-[33%] my-3 shadow-md overflow-hidden">
+        <img class="" src="<%= post.image.url %>" alt="image">
+    <div class="py-1 px-2">
+      <h1 class="text-2xl font-semibold"><%= post.title %></h1>
+    <p class="my-1">
+      <%= post.content ? post.content.substring(0, 250) + " ..." : "Content not available" %>
+      <a class="underline text-blue-600" href="/posts/<%= post._id %>">Read More</a>
+    </p>
+    </div>
+    <% if(currUser && currUser._id.toString() === post.userId._id.toString()){ %>
+    <div class="my-3 flex items-center gap-2 py-1 px-2">
+      <a
+        class="text-white px-2 py-1.5 shadow-md rounded-md bg-blue-600"
+        href="/delete/<%= post._id %>"
+        >Delete</a
+      >
+      <a
+        class="text-white px-2 py-1.5 shadow-md rounded-md bg-green-700"
+        href="/update/<%= post._id %>"
+        >Update</a
+      >
+      <form id="like-form" action="/post/<%= post._id %>/like" method="post">
+        <button id="like" class="text-[22px]" type="submit">
+        <i id="icon" class="<%= post.likedBy && post.likedBy.includes(currUser._id) ? "fa-solid": "fa-regular" %> fa-heart"></i> <%= post.likes %>
+        </button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+<% } %>
+<% }) %>
+<% } %>
+</div>
+<%- include("partials/footer"); -%>

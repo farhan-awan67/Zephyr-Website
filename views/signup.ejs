@@ -1,0 +1,50 @@
+<%- include("partials/header"); -%>
+<form
+  action="/signup"
+  method="post"
+  class="w-full max-w-[400px] m-auto mt-3 text-center"
+>
+  <h1 class="text-3xl text-black text-center font-bold">Sign Up</h1>
+  <div class="my-1.5">
+    <!-- <label for="password" class="text-sm">Password</label> -->
+    <br />
+    <input
+      class="border-black border-2 outline-none px-1 py-1 rounded-md"
+      type="email"
+      placeholder="email"
+      name="email"
+      autocomplete="off"
+      id="email"
+    />
+  </div>
+  <div class="my-1.5">
+    <!-- <label for="username" class="text-sm text-left ml-0">Username</label> -->
+    <br />
+    <input
+      class="border-black border-2 outline-none px-1 py-1 rounded-md"
+      type="text"
+      placeholder="username"
+      name="username"
+      autocomplete="off"
+      id="username"
+    />
+  </div>
+  <div class="my-1.5">
+    <!-- <label for="password" class="text-sm">Password</label> -->
+    <br />
+    <input
+      class="border-black border-2 outline-none px-1 py-1 rounded-md"
+      type="password"
+      placeholder="password"
+      name="password"
+      autocomplete="off"
+      id="password"
+    />
+  </div>
+  <button
+    class="bg-blue-700 rounded-md mt-1 px-2 py-1.5 shadow-md text-white autofill:disabled:"
+  >
+    Sign up
+  </button>
+</form>
+<%- include("partials/footer"); -%>
