@@ -99,7 +99,6 @@ const addLike = async (req, res, next) => {
   try {
     const id = req.params.id;
     const user = req.user;
-    console.log(user._id);
     const post = await Post.findById(id);
     if (!post) {
       req.flash("error", "post not found");
